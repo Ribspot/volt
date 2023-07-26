@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	
+	<!-- Boxicons -->
+	<link href="../static/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+	
+	<!-- My CSS -->
+	<link rel="stylesheet" href="/static/css/style.css">
+	<link rel="icon" type="image/png" sizes="100x100" href="../static/images/vv.png">
+	<title>AdminPage</title>
+</head>
+<body>
+
+
+	<!-- SIDEBAR -->
+	<section id="sidebar">
+		<a href="/admin/" class="brand">
+			<i class='bx bxs-smile'></i>
+			<span class="text">AdminCenter</span>
+		</a>
+		<ul class="side-menu top">
+			<li class="active">
+				<a href="/admin/">
+					<i class='bx bxs-dashboard' ></i>
+					<span class="text">Dashboard</span>
+				</a>
+			</li>
+			<li>
+				<a href="/admin/delivery">
+					<i class='bx bxs-shopping-bag-alt' ></i>
+					<span class="text">Deliveries</span>
+				</a>
+			</li>
+			<li>
+				<a href="/admin/customer">
+					<i class='bx bxs-doughnut-chart' ></i>
+					<span class="text">Customers</span>
+				</a>
+			</li>
+			
+			<li>
+				<a href="/admin/cat">
+					<i class='bx bxs-group' ></i>
+					<span class="text">Add Category</span>
+				</a>
+			</li>
+		</ul>
+		<ul class="side-menu">
+			<li>
+				<a href="/admin/profile">
+					<i class='bx bxs-cog' ></i>
+					<span class="text">Profile</span>
+				</a>
+			</li>
+            <li>
+				<a href="/admin/driver">
+					<i class='bx bxs-cog' ></i>
+					<span class="text">Add Driver</span>
+				</a>
+			</li>
+			<li>
+				<a href="/admin/logout" class="logout">
+					<i class='bx bxs-log-out-circle' ></i>
+					<span class="text">Logout</span>
+				</a>
+			</li>
+		</ul>
+	</section>
+	<!-- SIDEBAR -->
+
+
+
+	<!-- CONTENT -->
+	<section id="content">
+		<!-- NAVBAR -->
+		<nav>
+			<i class='bx bx-menu' ></i>
+			<a href="#" class="nav-link">Categories</a>
+			<form action="#">
+				<div class="form-input">
+					<input type="search" placeholder="Search...">
+					<button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
+				</div>
+			</form>
+			<input type="checkbox" id="switch-mode" hidden>
+			<label for="switch-mode" class="switch-mode"></label>
+			<a href="#" class="notification">
+				<i class='bx bxs-bell' ></i>
+				<span class="num">8</span>
+			</a>
+			<a href="#" class="profile">
+				<img src="img/people.png">
+			</a>
+		</nav>
+		<!-- NAVBAR -->
+
+		<!-- MAIN -->
+		<main>
+		
+			</div>
+
+			<ul class="box-info">
+				
+				<li>
+					<i class='bx bxs-group' ></i>
+					<span class="text">
+						<h3></h3>
+						<p>Add category</p>
+					</span>
+				</li>
+				
+			</ul>
+
+
+			<div >
+		<form action="" method="post">
+			<div class="mb-3">
+				{% set message =get_flashed_messages()%}
+				{% for m in message%}
+				<P class="alert alert-
+				success bg-success text-light">{{m}}</P>
+				{%endfor%} 
+				{% if cat.name.errors%}
+				<p class="alert alert-danger">{{cat.name.errors}}</p>
+				{%endif%}
+				  {{cat.name(class_='form-control', placeholder="name")}}
+				</div>
+				<div class="mb-3">
+					{% if cat.price.errors%}
+					<p class="alert alert-danger">{{cat.price.errors}}</p>
+					{%endif%}
+					  {{cat.price(class_='form-control', placeholder="price")}}
+					</div>
+					{{cat.csrf_token}}
+					{{cat.btn(class_="btn btn-dark")}}
+
+		</form>
+			</div>
+		</main>
+		<!-- MAIN -->
+	</section>
+	<!-- CONTENT -->
+	
+
+	<script src="/static/script.js"></script>
+</body>
+</html>

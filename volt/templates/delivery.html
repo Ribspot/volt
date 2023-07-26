@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="static/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <link href="static/fontawesome/css/all.css" rel="stylesheet"/>
+	<link rel="icon" type="image/png" sizes="100x100" href="static/images/vv.png">
+    <title>delivery_form</title>
+    <style>
+        #yy{
+			color:orangered;height:4px;width: 50px;
+		}
+
+        *{
+           font-family: banhschrift; 
+        }
+        .one{
+            background-color: antiquewhite;
+        }
+        .ff{
+			height: 100px;
+			background-color:rgb(4, 2, 24);
+		}
+        .pp{
+			height:500px;
+			background-color: rgb(10, 6, 44);
+		}
+        .pp{
+			height:500px;
+			background-color: rgb(10, 6, 44);
+		}
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid one">
+       
+				<nav class="navbar navbar-dark bg-light fixed-top">
+					<div class="container-fluid" >
+					  <a href="/"><img src="/static/images/volt.png" style="height: 100px;"></a>
+					  
+					  <button class="navbar-toggler btn btn-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+					  <span class="navbar-toggler-icon btn btn-dark"></span>
+					  </button>
+					  <div class="offcanvas offcanvas-end text-bg-light" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+					  <div class="offcanvas-header bg-dark">
+						<h5 class="offcanvas-title text-light" id="offcanvasDarkNavbarLabel">MENU</h5>
+						<button type="button" class="btn btn-outline-light" data-bs-dismiss="offcanvas" aria-label="Close">X</button>
+					  </div>
+					  <div class="offcanvas-body bg-dark">
+						<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+						<li class="nav-item">
+						  <a class="nav-link active " aria-current="page" href="/">HOME</a>
+						</li>
+						<li class="nav-item">
+						  <a class="nav-link " href="/about">ABOUT US</a>
+						</li>
+						<li class="nav-item">
+						  <a class="nav-link " href="/contact">CONTACT US</a>
+						  </li>
+						
+							{%if session.get('userid')==None%}
+							<li class="nav-item">
+							  <a class="nav-link " href="/login">LOGIN</a>
+							  </li>
+							  <li class="nav-item">
+							
+								<a class="nav-link " href="/signup">SIGN UP</a>
+								</li>
+								{%else%}
+								<li class="nav-item">
+									<a class="nav-link " href="/signout">LOGOUT</a>
+									</li>
+								{%endif%}
+								{%if session.get('userid')!=None%}
+						<li class="nav-item">
+						  <a class="nav-link " href="/profile">PROFILE</a>
+						  </li>
+						<li class="nav-item dropdown">
+						  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						  DELIVERY
+						  </a>
+						  <ul class="dropdown-menu dropdown-menu-dark">
+						  <li><a class="dropdown-item " href="/delivery">SEND A PACKAGE</a></li>
+						  <li><a class="dropdown-item" href="/trackingpage">TRACK A PACKAGE</a></li>
+						  <li>
+							<hr class="dropdown-divider">
+						  </li>
+						  {%endif%}
+						  </ul>
+						</li>text-dark
+						</ul>
+						<form class="d-flex mt-3" role="search">
+						<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+						<button class="btn btn-success" type="submit">Search</button>
+						</form>
+					  </div>
+					  </div>
+					</div>
+					</nav>
+        <div class="row align-items-center">
+            <div class="col-2"></div>
+            <div class="col-8 ">
+    <h1 class="mt-5">SEND PACKAGE</h1>
+
+
+
+
+
+
+
+
+
+    <form class="mb-5" method="post" action="">
+      
+		<div class="mb-3">
+			{% if delivery.fullname.errors%}
+			<p class="alert alert-danger">{{delivery.fullname.errors}}</p>
+			{%endif%}
+			  {{delivery.fullname(class_='form-control', placeholder="fullname")}}
+			</div>
+
+				
+					<div class="mb-3">
+						{% if delivery.phone_number.errors%}
+						<p class="alert alert-danger">{{delivery.phone_number.errors}}</p>
+						{%endif%}
+						  {{delivery.phone_number(class_='form-control', placeholder="phone number")}}
+						</div>
+						<div class="mb-3">
+							{% if delivery.destination_address.errors%}
+							<p class="alert alert-danger">{{delivery.destination_address.errors}}</p>
+							{%endif%}
+							  {{delivery.destination_address(class_='form-control', placeholder="destination address")}}
+							</div>
+
+  
+							<div class="mb-3">
+
+								<select name="delivery" id="category" class="form-control" required>
+									<option value="">Please select category</option>
+									{{cats}}
+									{% for c in cats %}
+									<option value="{{c.cat_id}}">{{c.cat_name}}--{{c.cat_price}}</option>
+									{% endfor %}
+								  </select>
+							</div>
+						<div class="mb-3">
+							
+							{% if delivery.house_address.errors%}
+							<p class="alert alert-danger">{{delivery.house_address.errors}}</p>
+							{%endif%}
+							  {{delivery.house_address(class_='form-control', placeholder="house address")}}
+							</div>
+							<div class="mb-3">
+								<select name="lga"  id="select" class="form-control" required>
+									{% for state in lga%}
+									<option value="{{state.lga_id}}">{{state.lga_name}}</option>
+									{%endfor%}
+								   </select>
+								</div>
+								<div class="mb-3">
+									<select  name="state" id="select" class="form-control" required>
+										{% for state in state%}
+										<option value="{{state.state_id}}">{{state.state_name}}</option>
+										{%endfor%}
+									   </select>
+									</div>
+						
+								<div class="mb-3">
+									{% if delivery.package_weight.errors%}
+									<p class="alert alert-danger">{{delivery.package_weight.errors}}</p>
+									{%endif%}
+									  {{delivery.package_weight(class_='form-control', placeholder="Package Weight")}}
+									</div>
+								
+										<div class="mb-3">
+											{% if delivery.pickup_address.errors%}
+											<p class="alert alert-danger">{{delivery.pickup_address.errors}}</p>
+											{%endif%}
+											  {{delivery.pickup_address(class_='form-control', placeholder="Pickup Address")}}
+											</div>
+											<div class="mb-3">
+												{% if delivery.package_value.errors%}
+												<p class="alert alert-danger">{{delivery.package_value.errors}}</p>
+												{%endif%}
+												  {{delivery.package_value(class_='form-control', placeholder="package value")}}
+												</div>
+												
+												{{delivery.csrf_token}}
+	{{delivery.btn(class_="btn btn-dark")}}
+	
+    </form>
+</div>
+<div class="col-2"></div>
+</div>
+
+
+	
+<div class="row pp " >
+	<div class="col-1"></div>
+	<div class="col-3 text-light my-5  " ><p><b>Our Service</b></p><hr id="yy"  ><p class="mt-3">local Delivery</p><p class="mt-3">Haulage</p><p class="mt-3">courier,cargo and parcel</p><a href="/about" class="btn btn-light">About Us</a></div>
+	<div class="col-1"></div>
+	<div class="col-3 text-light my-5"><p><b>Location</b></p><hr id="yy" ><p>No 6 Bolajide Avenue,</p><p>Gbagada ,</p><p>Lagos State,</p><p>Nigeria.</p><a href="/contact" class="btn btn-light">contact us</a>
+	</div>
+	<div class="col-1"></div>
+	<div class="col-2 text-light  my-5"><p><b>Order Now</b></p><hr id="yy" ><p>Order a ride now</p><p>Deliver your goods</p><p>Click Here</p><a  href="/signup" class="btn btn-light">Send Package</a></div>
+	
+</div>
+<div class="row ff text-center text-light"><p class=" mt-5">copyright 2023 <b>Volt</b> All rights Reserved Designed by <b>OYOMA</b>  </p></div>
+		</div>
+		
+	
+
+
+
+
+<script type="text/javascript" src="static/bootstrap/js/bootstrap.bundle.js">
+
+
+</script>
+</body>
+</html>

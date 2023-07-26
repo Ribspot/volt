@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="static/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <link href="static/fontawesome/css/all.css" rel="stylesheet"/>
+    <link rel="icon" type="image/png" sizes="100x100" href="static/images/vv.png">
+    <title>Signup</title>
+    <style>
+    .one{
+        height: 1000px;
+       
+    }
+    .ll{
+      margin-top: 100px;
+        background-image: url('static/images/door.jpg');
+        background-size:100% 100%;
+    }
+    .kk{
+      margin-top: 200px;
+       
+        
+        
+    }
+    .ne{
+        margin-left: 40px;
+    }
+    .form-control{
+        padding-left: 200px;
+    }
+    .yy{
+        text-decoration: none;
+        color: red;
+    }
+   
+    #yy{
+			color:orangered;height:4px;width: 50px;
+		}
+        .pp{
+			height:500px;
+			background-color: rgb(10, 6, 44);
+		}
+        .ff{
+			height: 100px;
+			background-color:rgb(4, 2, 24);
+		}
+    </style>
+</head>
+<body>
+    <div class="container-fluid one">
+      <nav class="navbar navbar-dark bg-light fixed-top">
+        <div class="container-fluid" >
+          <a href="/"><img src="/static/images/volt.png" style="height: 100px;"></a>
+          
+          <button class="navbar-toggler btn btn-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon btn btn-dark"></span>
+          </button>
+          <div class="offcanvas offcanvas-end text-bg-light" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+          <div class="offcanvas-header bg-dark">
+          <h5 class="offcanvas-title text-light" id="offcanvasDarkNavbarLabel">MENU</h5>
+          <button type="button" class="btn btn-outline-light" data-bs-dismiss="offcanvas" aria-label="Close">X</button>
+          </div>
+          <div class="offcanvas-body bg-dark">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+          <li class="nav-item">
+            <a class="nav-link active " aria-current="page" href="/">HOME</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="/about">ABOUT US</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="/contact">CONTACT US</a>
+            </li>
+          
+            {%if session.get('userid')==None%}
+            <li class="nav-item">
+              <a class="nav-link " href="/login">LOGIN</a>
+              </li>
+              <li class="nav-item">
+            
+              <a class="nav-link " href="/signup">SIGN UP</a>
+              </li>
+              {%else%}
+              <li class="nav-item">
+                <a class="nav-link " href="/signout">LOGOUT</a>
+                </li>
+              {%endif%}
+              {%if session.get('userid')!=None%}
+          <li class="nav-item">
+            <a class="nav-link " href="/profile">PROFILE</a>
+            </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            DELIVERY
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark">
+            <li><a class="dropdown-item " href="/delivery">SEND A PACKAGE</a></li>
+            <li><a class="dropdown-item" href="/trackingpage">TRACK A PACKAGE</a></li>
+            <li>
+            <hr class="dropdown-divider">
+            </li>
+            {%endif%}
+            </ul>
+          </li>text-dark
+          </ul>
+          <form class="d-flex mt-3" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-success" type="submit">Search</button>
+          </form>
+          </div>
+          </div>
+        </div>
+        </nav>
+        
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-5 kk">
+            <h1>Sign Up</h1>
+            <h4>Please fill your information below</h4>
+				
+				
+
+
+      <form  method="post" action="">
+        
+        <div class="mb-3">
+          {% if signup.fullname.errors%}
+          <p class="alert alert-danger">{{signup.fullname.errors}}</p>
+          {%endif%}
+            {{signup.fullname(class_='form-control',placeholder="Enter Your fullname")}}
+        </div>
+        <div class="mb-3">
+          {% if signup.phone_number.errors%}
+          <p class="alert alert-danger">{{signup.phone_number.errors}}</p>
+          {%endif%}
+            {{signup.phone_number(class_='form-control', placeholder=" Enter Your Phone Number " )}}
+        </div>
+        <div class="mb-3">
+          {% if signup.email.errors%}
+          <p class="alert alert-danger">{{signup.email.errors}}</p>
+          {%endif%}
+            {{signup.email(class_='form-control',placeholder="Enter Your Email ",type="email")}}
+        </div>
+        <div class="mb-3">
+          {% if signup.username.errors%}
+          <p class="alert alert-danger">{{signup.username.errors}}</p>
+          {%endif%}
+            {{signup.username(class_='form-control',placeholder="Enter Your Username")}}
+        </div>
+        <div class="mb-3">
+          {% if signup.password.errors%}
+          <p class="alert alert-danger">{{signup.password.errors}}</p>
+          {%endif%}
+          {{signup.password(class_='form-control', placeholder="Enter Your Password ",type="password")}}
+      </div>
+      <div class="mb-3">
+        {% if signup.confirm_password.errors%}
+        <p class="alert alert-danger">{{signup.confirm_password.errors}}</p>
+        {%endif%}
+        {{signup.confirm_password(class_='form-control',placeholder="Enter Your Password ",type="password")}}
+    </div>
+      <div class="mb-3">
+        {% if signup.house_address.errors%}
+        <p class="alert alert-danger">{{signup.house_address.errors}}</p>
+        {%endif%}
+        {{signup.house_address(class_='form-control',placeholder= "Enter Your House Address")}}
+    </div>
+   
+        <div class="mb-3">
+            {{signup.btn(class_='btn btn-primary btn-lg')}}
+        </div>
+        
+        {{signup.csrf_token}}
+    </form>
+
+    {% set message =get_flashed_messages()%}
+{% for m in message%}
+<P class="alert alert-
+success">{{m}}</P>
+{%endfor%}
+        
+
+                <!-- <form>
+                    <h1>LOGIN</h1>
+                    <label>USERNAME</label><input class="form-control my-3" placeholder="Enter Your Username">
+                    <label>PASSWORD</label><input class="form-control my-3" placeholder="Enter Your Password ">
+                    <a class='yy'href="">forgot Password</a><br>
+              
+                    <button class="btn btn-dark text-light mt-3">LOGIN</button>
+    
+    
+    
+    
+                    </form> -->
+
+
+
+
+            </div>
+            <div class="col-md-6 ll"><div class="col n" style="margin-top:0px;flex-direction:column"></div></div>
+
+        </div>
+
+    
+	
+		
+		<div class="row pp " >
+			<div class="col-1"></div>
+			<div class="col-3 text-light my-5  " ><p><b>Our Service</b></p><hr id="yy"  ><p class="mt-3">local Delivery</p><p class="mt-3">Haulage</p><p class="mt-3">courier,cargo and parcel</p><a href="/about" class="btn btn-light">About Us</a></div>
+			<div class="col-1"></div>
+			<div class="col-3 text-light my-5"><p><b>Location</b></p><hr id="yy" ><p>No 6 Bolajide Avenue,</p><p>Gbagada ,</p><p>Lagos State,</p><p>Nigeria.</p><a href="/contact" class="btn btn-light">contact us</a>
+			</div>
+			<div class="col-1"></div>
+			<div class="col-2 text-light  my-5"><p><b>Order Now</b></p><hr id="yy" ><p>Order a ride now</p><p>Deliver your goods</p><p>Click Here</p><a href="/signup" class="btn btn-light">Send Package</a></div>
+			
+		</div>
+		<div class="row ff text-center text-light"><p class=" mt-5">copyright 2023 <b>Volt</b> All rights Reserved Designed by <b>OYOMA</b>  </p></div>
+				</div>
+			
+		
+
+
+
+
+
+    </div>
+				
+			
+		
+
+
+
+<script type="text/javascript" src="static/bootstrap/js/bootstrap.bundle.js">
+	
+
+</script>
+	</body>
+	</html>

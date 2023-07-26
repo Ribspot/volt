@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="static/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <link href="static/fontawesome/css/all.css" rel="stylesheet"/>
+    <link rel="icon" type="image/png" sizes="100x100" href="static/images/vv.png">
+    <title>Transport</title>
+</head>
+<style>
+   *{
+           font-family: banhschrift; 
+        }
+      .tabe{
+        height: 30%;
+      }
+        .aa{
+          
+        }
+        .me{
+            background-color: blanchedalmond;
+            height: 500px;
+        }
+        .trow{
+           
+            background-color: rgb(38, 36, 34);
+            color: white;
+            height: 10%;
+            font-size: 12px;
+           
+        }
+        .jj{
+           height: 50%;
+            border: 2px solid rgb(33, 32, 32);
+         
+        }
+       
+  #o{
+    background-color:rgba(0,0,0,0.8);
+  }
+  .tt{
+    font-size: 60px;
+    margin-top: 150px;
+  }
+  .ty{
+     
+			height: 600px;
+			background-image:url("rg.jpg");
+			background-size:100% 1000px;
+		
+  }
+  .mrow{
+    height: 30%;
+    background-color: rgb(253, 247, 247);
+  }
+  .f{
+  
+    height: 100px;
+
+  }
+	.ff{
+			height: 100px;
+			background-color:rgb(4, 2, 24);
+		}
+.one{
+         
+         min-height: 1000px;
+
+  }
+  .jj{
+    height: 400px;
+   
+  }
+.pp{
+			height:500px;
+			background-color: rgb(10, 6, 44);
+		} 
+    .kk{
+      height:60px;width:60px;border-radius: 50%;background-color: rgb(248, 226, 216);margin-right: 50px;
+    } 
+    #yy{
+			color:orangered;height:4px;width: 50px;
+		}
+
+  
+@media screen and (min-width: 370px) {
+  .yyy{
+    width: 90%;
+    min-height: auto;
+  }
+  
+}
+tr{
+  border: dotted 1px black;
+}
+th{
+  border: dotted 1px black;
+}   
+</style>
+<body>
+ 
+		<div class="container-fluid one">
+     
+				<nav class="navbar navbar-dark bg-light fixed-top">
+					<div class="container-fluid" >
+					  <a href="/"><img src="/static/images/volt.png" style="height: 100px;"></a>
+					  
+					  <button class="navbar-toggler btn btn-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+					  <span class="navbar-toggler-icon btn btn-dark"></span>
+					  </button>
+					  <div class="offcanvas offcanvas-end text-bg-light" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+					  <div class="offcanvas-header bg-dark">
+						<h5 class="offcanvas-title text-light" id="offcanvasDarkNavbarLabel">MENU</h5>
+						<button type="button" class="btn btn-outline-light" data-bs-dismiss="offcanvas" aria-label="Close">X</button>
+					  </div>
+					  <div class="offcanvas-body bg-dark">
+						<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+						<li class="nav-item">
+						  <a class="nav-link active " aria-current="page" href="/">HOME</a>
+						</li>
+						<li class="nav-item">
+						  <a class="nav-link " href="/about">ABOUT US</a>
+						</li>
+						<li class="nav-item">
+						  <a class="nav-link " href="/contact">CONTACT US</a>
+						  </li>
+						
+							{%if session.get('userid')==None%}
+							<li class="nav-item">
+							  <a class="nav-link " href="/login">LOGIN</a>
+							  </li>
+							  <li class="nav-item">
+							
+								<a class="nav-link " href="/signup">SIGN UP</a>
+								</li>
+								{%else%}
+								<li class="nav-item">
+									<a class="nav-link " href="/signout">LOGOUT</a>
+									</li>
+								{%endif%}
+								{%if session.get('userid')!=None%}
+						<li class="nav-item">
+						  <a class="nav-link " href="/profile">PROFILE</a>
+						  </li>
+						<li class="nav-item dropdown">
+						  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						  DELIVERY
+						  </a>
+						  <ul class="dropdown-menu dropdown-menu-dark">
+						  <li><a class="dropdown-item " href="/delivery">SEND A PACKAGE</a></li>
+						  <li><a class="dropdown-item" href="/trackingpage">TRACK A PACKAGE</a></li>
+						  <li>
+							<hr class="dropdown-divider">
+						  </li>
+						  {%endif%}
+						  </ul>
+						</li>text-dark
+						</ul>
+						<form class="d-flex mt-3" role="search">
+						<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+						<button class="btn btn-success" type="submit">Search</button>
+						</form>
+					  </div>
+					  </div>
+					</div>
+					</nav>
+      
+   <div class="row  me">
+
+   
+   <div class="col-sm-1"></div>
+<div class="col-lg-10 mt-5 yyy">
+  <h1 class="text-center " >DELIVERY DETAILS</h1>
+ <table class="yyy" border="1">
+
+
+
+    <tr class="table-dark table-active text-uppercase text-white bg-dark">
+        <th>FULLNAME</th>
+        <th>PHONE NUMBER</th>
+        <th>DESTINATION ADDRESS</th>
+        <th>CATEGORY</th>
+        <th>HOUSE ADDRESS</th>
+      
+    </tr>
+    <tr style="height: 50px;">
+        <td>{{package.fullname}}</td>
+        <td>{{package.phone_number}}</td>
+        <td>{{package.pickup_address}}</td>
+        <td>{{package.catdeets.cat_name}}</td>
+        <td>{{package.house_address}}</td>
+       
+    </tr>
+    </table>
+    <br><br>
+    <table class="yyy" border="1">
+
+    <tr class="table-dark table-active text-uppercase text-white bg-dark">
+      
+        <th>HOUSE ADDRESS</th>
+        <th>PICKUP ADDRESS</th>
+        <th> PACKAGE VALUE</th>
+        <th>PACKAGE WEIGHT</th>
+        <th> STATE</th>
+        <th> LGA</th>
+        <th>REF NO</th>
+    </tr>
+    <tr style="height: 50px;">
+    
+   {{data}}{{userdeets.userdee.fullname}}
+     
+        <td>{{package.datesent}}</td>
+        <td>{{package.pickup_address}}</td>
+        <td>{{package.package_value}}</td>
+        <td>{{package.weight}}</td>
+        <td> {{package.statedeets.state_name}}</td>
+        <td> {{package.lgadeets.lga_name}}</td>
+        <td> {{package.ref_no}}</td>
+        {{package.package_user_id}}
+    </tr>
+
+ </table>
+ 
+ <form method="post" action="" class="yyy">
+
+  <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+  <button class="btn btn-dark">make payment</button>
+</form>
+    
+    
+</div>
+
+           
+</div>
+    
+
+
+<div class="row pp " >
+  <div class="col-1"></div>
+  <div class="col-3 text-light my-5  " ><p><b>Our Service</b></p><hr id="yy"  ><p class="mt-3">local Delivery</p><p class="mt-3">Haulage</p><p class="mt-3">courier,cargo and parcel</p><a href="/about" class="btn btn-light">About Us</a></div>
+  <div class="col-1"></div>
+  <div class="col-3 text-light my-5"><p><b>Location</b></p><hr id="yy" ><p>No 6 Bolajide Avenue,</p><p>Gbagada ,</p><p>Lagos State,</p><p>Nigeria.</p><a href="/contact" class="btn btn-light">contact us</a>
+  </div>
+  <div class="col-1"></div>
+  <div class="col-2 text-light  my-5"><p><b>Order Now</b></p><hr id="yy" ><p>Order a ride now</p><p>Deliver your goods</p><p>Click Here</p><a  href="/signup" class="btn btn-light">Send Package</a></div>
+  
+</div>
+<div class="row ff text-center text-light"><p class=" mt-5">copyright 2023 <b>Volt</b> All rights Reserved Designed by <b>OYOMA</b>  </p></div>
+    </div>
+
+    <script type="text/javascript" src="/static/bootstrap/js/bootstrap.bundle.js">
+	
+
+    </script>
+</body>
+</html>
